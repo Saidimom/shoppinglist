@@ -19,13 +19,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 //List of items
-Route::get('items', 'ItemsController@index');
+Route::get('items', 'ItemsController@index')->name('api.items.index');
+
+//Search items
+Route::post('items/search', 'ItemsController@search')->name('api.items.search');
 
 //Create a new item
-Route::post('item', 'ItemsController@store');
+Route::post('item', 'ItemsController@store')->name('api.items.store');
 
 //Update item
-Route::put('item', 'ItemsController@store');
+Route::put('item', 'ItemsController@store')->name('api.items.update');
 
 //Destroy item
-Route::delete('item', 'ItemsController@destroy');
+Route::delete('item/{id}', 'ItemsController@destroy')->name('api.items.destroy');
