@@ -17,7 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 //List of items
 Route::get('items', 'ItemsController@index')->name('api.items.index');
 
