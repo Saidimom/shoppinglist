@@ -40,6 +40,17 @@ class RegisterController extends Controller
     }
 
     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        return view(env('THEME').'.auth.register');
+    }
+
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
