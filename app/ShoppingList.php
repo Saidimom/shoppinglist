@@ -16,7 +16,7 @@ class ShoppingList extends Model
     }
 
     public function items(){
-        return $this->belongsToMany('App\Item', 'list_item', 'list_id', 'item_id')->withPivot('purchased');
+        return $this->belongsToMany('App\Item', 'list_item', 'list_id', 'item_id')->withPivot('purchased', 'comment');
     }
 
 

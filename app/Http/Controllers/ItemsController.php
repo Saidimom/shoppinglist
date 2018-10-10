@@ -32,10 +32,8 @@ class ItemsController extends Controller
     {
         //
         $item = ($request->isMethod('PUT')) ? Item::findOrFail($request->item_id) : new Item();
-
         $item->id = $request->input('item_id');
         $item->title = $request->input('title');
-
         if ($item->save()){
             return new ItemResource($item);
         }
