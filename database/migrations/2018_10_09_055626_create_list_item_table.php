@@ -17,11 +17,12 @@ class CreateListItemTable extends Migration
             $table->increments('id');
 
             $table->integer('list_id')->unsigned()->nullable()->default(null);
-            $table->foreign('list_id')->references('id')->on('lists');
+            $table->foreign('list_id')->references('id')->on('lists')->onDelete('cascade');
 
             $table->integer('item_id')->unsigned()->nullable()->default(null);
-            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
 
+            $table->string('comment', 55)->default('');
             $table->boolean('purchased')->default(false);
 
             $table->timestamps();

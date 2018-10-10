@@ -13,21 +13,42 @@ use Illuminate\Http\Request;
 |
 */
 
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+*/
 
-//List of items
-Route::get('items', 'ItemsController@index')->name('api.items.index');
+Route::post('user/login', 'Auth\APILoginController@login');
 
-//Search items
-Route::post('items/search', 'ItemsController@search')->name('api.items.search');
+Route::group(['middleware' => 'jwt.auth'], function (){
 
-//Create a new item
-Route::post('item', 'ItemsController@store')->name('api.items.store');
+    //List of items
+    Route::get('items', 'ItemsController@index')->name('api.items.index');
 
-//Update item
-Route::put('item', 'ItemsController@store')->name('api.items.update');
+    //Search items
+    Route::post('items/search', 'ItemsController@search')->name('api.items.search');
 
-//Destroy item
-Route::delete('item/{id}', 'ItemsController@destroy')->name('api.items.destroy');
+    //Create a new item
+    Route::post('item', 'ItemsController@store')->name('api.items.store');
+
+    //Update item
+    Route::put('item', 'ItemsController@store')->name('api.items.update');
+
+    //Destroy item
+    Route::delete('item/{id}', 'ItemsController@destroy')->name('api.items.destroy');
+
+    //Get all ShoppingLists by user_id
+    Route::get('lists', 'ShoppingListsController@index')->name('api.lists.index');
+
+    //Create a new ShoppingList
+    Route::post('list', 'ShoppingListsController@store')->name('api.lists.store');
+
+    //Update ShoppingList
+    Route::put('list', 'ShoppingListsController@store')->name('api.lists.update');
+
+    //Destroy ShoppingList
+    Route::delete('list/{id}', 'ShoppingListsController@destroy')->name('api.lists.destroy');
+
+});
+
